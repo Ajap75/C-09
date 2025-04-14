@@ -6,7 +6,7 @@
 /*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:00:39 by anastruc          #+#    #+#             */
-/*   Updated: 2025/04/11 18:44:04 by anastruc         ###   ########.fr       */
+/*   Updated: 2025/04/14 15:48:41 by anastruc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int main (int argc, char **argv)
     for( ; getline(InputFile, line) ; )
     {
         if (!lineParser(line));
-
+            continue;
+        bitcoinExchange.GetDailyPrice(line);
     }
     return (0);
 }
