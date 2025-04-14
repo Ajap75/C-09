@@ -6,13 +6,12 @@
 /*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:00:39 by anastruc          #+#    #+#             */
-/*   Updated: 2025/04/14 15:48:41 by anastruc         ###   ########.fr       */
+/*   Updated: 2025/04/14 20:30:03 by anastruc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/BitcoinExchange.hpp"
 #include "../headers/Colors.hpp"
-#include "../headers/Functions.hpp"
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -21,30 +20,27 @@
 int main (int argc, char **argv)
 {
     std::string dbPath;
-    std::string line;
+    std::string inputPath;
 
-    dbPath = "srcs/data.csv";
-    
     if (argc == 1)
     {
         std::cout << "Error: could not open file" << std::endl;
         return (1);
     }
     
-    BitcoinExchange bitcoinExchange(dbPath);
+    dbPath.assign("srcs/data.csv");
+    inputPath.assign(argv[1]);
     
-    std::ifstream InputFile(argv[1]);
-    if (!InputFile.is_open())
+    try
     {
-        std::cout << "Error: could not open file" << std::endl;
-        return (1);
+        BitcoinExchange bitcoinExchange(dbPath, inputPath);
+        bitcoinExchange.PrintPortfolioDailyValue();
     }
-    for( ; getline(InputFile, line) ; )
+    catch(const std::exception& e)
     {
-        if (!lineParser(line));
-            continue;
-        bitcoinExchange.GetDailyPrice(line);
+        std::cerr << e.what() << '\n';
     }
+    
     return (0);
 }
 

@@ -6,11 +6,12 @@
 /*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 13:57:41 by anastruc          #+#    #+#             */
-/*   Updated: 2025/04/11 18:35:45 by anastruc         ###   ########.fr       */
+/*   Updated: 2025/04/14 19:53:47 by anastruc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <map>
+#include <vector>
 #include <algorithm>
 #include <iomanip>
 #include <iostream>
@@ -23,13 +24,13 @@ class BitcoinExchange
 {
     public :
     
-    BitcoinExchange(std::string &dbFileName);
+    BitcoinExchange(std::string &dbFileName, std::string &inputFileName);
     BitcoinExchange(BitcoinExchange &other);
     BitcoinExchange& operator =(BitcoinExchange &other);
     ~BitcoinExchange();
     
     //Publics Methodes
-    float   GetDailyPrice(std::string& date);
+    void   PrintPortfolioDailyValue();
     
     
     //Nested Exception
@@ -50,12 +51,15 @@ class BitcoinExchange
         public :
         const char* what() const throw() ;
     };
-    //Exception 
     
     private :
     
-    std::map <std::string, float>  db;
-    void    LoadDbInContainer(std::istream  &db);
+    std::map <std::string, float>  db_map;
+    std::vector<std::string> input_vector;
+
+    void LoadDbInMap(std::ifstream &db_ifs);
+    void LoadInputInVector(std::ifstream &input_ifs);
+    bool lineParser(std::string &line , std::string &date, float &value);
     BitcoinExchange();
     //Debug/Test Methods
     void PrintDb(std::map<std::string, float>);    

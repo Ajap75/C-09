@@ -6,7 +6,7 @@
 #    By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 12:53:29 by anastruc          #+#    #+#              #
-#    Updated: 2025/04/11 17:38:08 by anastruc         ###   ########.fr        #
+#    Updated: 2025/04/14 20:01:57 by anastruc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,14 +20,15 @@ NC = \033[0m
 
 HEADER =  BitcoinExchange.hpp \
 Colors.hpp \
-
-
+Parsing_Functions.hpp \
 
  
 
 SRCS = main.cpp \
 BitcoinExchange.cpp \
 Exception.cpp \
+parsing_utils.cpp \
+
 
 PSRCS = $(addprefix srcs/, $(SRCS))
 
