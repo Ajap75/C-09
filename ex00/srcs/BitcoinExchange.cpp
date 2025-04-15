@@ -6,7 +6,7 @@
 /*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 13:57:23 by anastruc          #+#    #+#             */
-/*   Updated: 2025/04/14 21:14:37 by anastruc         ###   ########.fr       */
+/*   Updated: 2025/04/15 10:48:43 by anastruc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,16 +94,28 @@ void   BitcoinExchange::PrintPortfolioDailyValue()
     std::string date;
     float value_float;
     std::vector<std::string>::iterator it_input = input_vector.begin();
+    std::map<std::string, float>::iterator it_db = db_map.begin();
+
     
     it_input++; // pass the first line (title);
     for( ; it_input != input_vector.end() ; ++it_input)
     {
         if (!lineParser(*it_input, date, value_float))
         {
-            if (db_map.find(date) == db_map.end())    
-                std::cout << "Pas trouve" << date <<  " => " << value_float << " = " << db_map.lower_bound(date)->second * value_float << std::endl;
+            //Cf comment below
+            if (db_map.find(date) != db_map.end())
+                std::cout << date <<  " => " << value_float << " = " << db_map.find(date)->second * value_float << std::endl;
             else
-                std::cout << "OK" << date <<  " => " << value_float << " = " << db_map.find(date)->second * value_float << std::endl;
+            {
+                it_db = db_map.lower_bound(date);
+                if (it_db == db_map.begin())
+                    std::cout << date <<  " => " << value_float << " = " << it_db->second * value_float << std::endl;
+                else
+                {
+                    it_db--;
+                    std::cout << date <<  " => " << value_float << " = " << it_db->second * value_float << std::endl;
+                }
+            }
         }
     }
         
@@ -136,5 +148,27 @@ BitcoinExchange& BitcoinExchange::operator =(BitcoinExchange &other)
 
 
 
-
+/*
+ * Explanation of std::map::lower_bound(k) and std::map::upper_bound(k):
+ *
+ * - lower_bound(k) returns an iterator to the first element whose key is >= k.
+ *   * If k is smaller than all keys, lower_bound(k) == map.begin().
+ *   * If k is larger than all keys, lower_bound(k) == map.end().
+ *   * If a key == k exists, it points to that exact key.
+ *   * Otherwise it points to the next greater key (not the previous one).
+ *
+ * - upper_bound(k) returns an iterator to the first element whose key is > k.
+ *   * If k is smaller than all keys, upper_bound(k) == map.begin().
+ *   * If k is larger than all keys, upper_bound(k) == map.end().
+ *   * If a key == k exists, it points to the key that follows k, not k itself.
+ *
+ * When k is outside the map’s range (smaller than the first key or larger than the last key),
+ * both lower_bound(k) and upper_bound(k) will return either map.begin() or map.end(), depending
+ * on whether k is less or greater than all existing keys.
+ *
+ * Important note for “previous” key lookups:
+ * Neither lower_bound(k) nor upper_bound(k) directly returns the largest key < k if k isn’t found;
+ * you typically do 'auto it = lower_bound(k); --it;' (with safety checks) to access the closest
+ * strictly lower key if no exact match exists.
+ */
 
