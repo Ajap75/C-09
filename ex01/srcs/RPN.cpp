@@ -6,7 +6,7 @@
 /*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:29:27 by anastruc          #+#    #+#             */
-/*   Updated: 2025/04/16 13:06:48 by anastruc         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:19:59 by anastruc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ static void calculate_stack(char sign, std::stack<float> &stack)
     stack.pop();
     left_value = stack.top();
     stack.pop();
+    if (sign  == '/' && right_value == 0)
+        return ;
     result = operation(sign,(left_value), (right_value));
     stack.push(result);
 }
@@ -78,7 +80,7 @@ static float operation(char sign, float left_value, float right_value)
         return ((left_value) - (right_value));
     else if (sign == '+')
         return ((left_value) + (right_value));
-    else if (sign == '/' && right_value != '0')
+    else if (sign == '/')
         return ((left_value) / (right_value));
     else
         return ((left_value) * (right_value));
