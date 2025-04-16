@@ -6,7 +6,7 @@
 /*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 14:08:12 by anastruc          #+#    #+#             */
-/*   Updated: 2025/04/15 18:23:25 by anastruc         ###   ########.fr       */
+/*   Updated: 2025/04/16 12:50:27 by anastruc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,8 @@ int main(int argc, char ** argv)
         std::cerr << "Error" << std::endl;
         return (1);
     }
-    std::cerr << "PARSING OK" << std::endl;
     rpn my_calculator(argv[1]);
-    my_calculator.run_calculation(argv[1]);
+    my_calculator.run_calculation();
 } 
 
 
