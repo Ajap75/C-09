@@ -6,7 +6,7 @@
 #    By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 12:53:29 by anastruc          #+#    #+#              #
-#    Updated: 2025/04/16 14:52:54 by anastruc         ###   ########.fr        #
+#    Updated: 2025/04/16 18:11:23 by anastruc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ HEADER =  Colors.hpp \
 
 SRCS = main.cpp \
 		PmergeMe.cpp \
+			Ford_Johnson_list.cpp \
 
 
 

@@ -6,7 +6,7 @@
 /*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 15:46:30 by anastruc          #+#    #+#             */
-/*   Updated: 2025/04/16 17:03:03 by anastruc         ###   ########.fr       */
+/*   Updated: 2025/04/16 17:48:45 by anastruc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class FordJ
         FordJ(const FordJ &other);
         FordJ& operator =(const FordJ &other);
         
-        // void sort_using_list();
+        void sort_using_list();
         // void sort_using_deque();
         void print_datas();
         
@@ -44,9 +44,8 @@ class FordJ
 
         void print_list(std::list<unsigned> &list) const;
         void print_deque(std::deque<unsigned> &deque) const;
-
-
-
 };
+
+void sort_each_pair(std::list<unsigned> &list_origin, std::list<unsigned> &list_sorted);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 15:46:30 by anastruc          #+#    #+#             */
-/*   Updated: 2025/04/16 17:10:03 by anastruc         ###   ########.fr       */
+/*   Updated: 2025/04/16 18:13:52 by anastruc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ FordJ::FordJ(char **sequence)
     // std::cout << RED << "ooooooooooooooooooo" << RESET << std::endl;
     // print_list(list_origin);
     print_datas();
+    sort_using_list();
 
 }
 
@@ -52,10 +53,10 @@ FordJ& FordJ::operator =(const FordJ &other)
 
 
 // // apply algo
-// void FordJ::sort_using_list()
-// {
-    
-// }
+void FordJ::sort_using_list()
+{
+    sort_each_pair(list_origin, list_sorted);
+}
 
 // // apply algo
 // void FordJ::sort_using_deque()
@@ -86,6 +87,7 @@ void FordJ::print_datas()
     std::cout << "Before: ";
     print_list(list_origin);
     std::cout << "After: ";
+    print_list(list_origin);
     std::cout << std::endl;
     std::cout << "Time to process a range of " << list_origin.size() << BLUE << " elements with std::list : " << RESET << std::endl;
     std::cout << "Time to process a range of " << deque_origin.size() << MAGENTA << " elements with std::deque : " << RESET << std::endl;
