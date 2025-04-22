@@ -6,7 +6,7 @@
 /*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 17:45:25 by anastruc          #+#    #+#             */
-/*   Updated: 2025/04/17 16:55:32 by anastruc         ###   ########.fr       */
+/*   Updated: 2025/04/22 17:04:29 by anastruc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void create_pairs(std::list<unsigned> &list_origin, std::list<unsigned> &list_so
     
     while (!end_of_list(curr, next, list_origin))
     {
-        std::cout << "curr = " << *curr << "|  nest = " << *next << std::endl;
+        // std::cout << "curr = " << *curr << "|  nest = " << *next << std::endl;
         if (*next > *curr)
         {
             list_sorted.push_back(*curr);
@@ -67,7 +67,7 @@ int end_of_list(std::list<unsigned>::iterator &curr, std::list<unsigned>::iterat
 
 void empty_origin_list(std::list<unsigned> &list_origin)
 {
-    // If the list is odd, the last element has been paired with any other element and is not in the sorted list.
+    // If the list is odd, the last element hasn't been paired with any other element and is not in the sorted list.
     // So I need to keep it in the origin_list
     if (list_origin.size() % 2 != 0) // odd
     {
@@ -76,11 +76,6 @@ void empty_origin_list(std::list<unsigned> &list_origin)
     }
     else // even
     list_origin.erase(list_origin.begin(), list_origin.end());
-    
-    std::list<unsigned>::iterator it = list_origin.begin();
-    for ( ; it != list_origin.end() ; ++it)
-        std::cout << *it << " ";
-    std::cout << std::endl;
 }
 
 void create_high_element_new_pairs(std::list<unsigned> &list_to_be_insert, std::list<unsigned> &list_sorted)
@@ -103,24 +98,11 @@ void create_high_element_new_pairs(std::list<unsigned> &list_to_be_insert, std::
 void insert(std::list<unsigned> &list_to_be_insert, std::list<unsigned> &list_sorted)
 {
     std::list<unsigned>::iterator it_tbi = list_to_be_insert.begin();
-    std::list<unsigned>::iterator it_sorted;
-    int insertion_done;
     
     for (; it_tbi != list_to_be_insert.end(); ++it_tbi)
     {
-        it_sorted = list_sorted.begin();
-        insertion_done = 0;
-        for(; it_sorted != list_sorted.end() ; ++it_sorted)
-        {
-            if (*it_tbi < *it_sorted)
-            {
-                list_sorted.insert(it_sorted, *it_tbi);
-                insertion_done = 1;
-                break;
-            }
-        }
-        if (!insertion_done)
-            list_sorted.insert(list_sorted.end(), *it_tbi);
+        std::list<unsigned>::iterator pos = std::lower_bound(list_sorted.begin(), list_sorted.end(), *it_tbi);
+        list_sorted.insert(pos, *it_tbi);
     }
 }
 

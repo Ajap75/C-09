@@ -6,7 +6,7 @@
 /*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 15:01:41 by anastruc          #+#    #+#             */
-/*   Updated: 2025/04/17 18:27:51 by anastruc         ###   ########.fr       */
+/*   Updated: 2025/04/22 16:54:29 by anastruc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int main (int argc, char **argv)
     FordJ my_algo(argv);
     my_algo.sort_using_list();
     my_algo.sort_using_deque();
+    
 
     my_algo.print_algo_results();
     return (0);
@@ -57,7 +58,6 @@ static int input_parser(int argc, char **argv)
             return (1);
         }
     }
-    std::cout << "PARSING OK" << std::endl;
     return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 15:46:30 by anastruc          #+#    #+#             */
-/*   Updated: 2025/04/17 18:16:02 by anastruc         ###   ########.fr       */
+/*   Updated: 2025/04/22 16:55:06 by anastruc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,12 @@ class FordJ
 
         void print_algo_results();
 
-
-        void print_datas();
-
         float list_algo_timer;
         float deque_algo_timer;
         
         private :
 
+        std::list<unsigned> input;
         std::size_t sequence_size;
         std::list<unsigned> list_origin;
         std::list<unsigned> list_sorted;

@@ -6,7 +6,7 @@
 /*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 17:45:25 by anastruc          #+#    #+#             */
-/*   Updated: 2025/04/17 17:50:10 by anastruc         ###   ########.fr       */
+/*   Updated: 2025/04/22 17:04:26 by anastruc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void create_pairs(std::deque<unsigned> &deque_origin, std::deque<unsigned> &dequ
     
     while (!end_of_deque(curr, next, deque_origin))
     {
-        std::cout << "curr = " << *curr << "|  nest = " << *next << std::endl;
+        // std::cout << "curr = " << *curr << "|  nest = " << *next << std::endl;
         if (*next > *curr)
         {
             deque_sorted.push_back(*curr);
@@ -69,11 +69,6 @@ void empty_origin_deque(std::deque<unsigned> &deque_origin)
     }
     else // even
     deque_origin.erase(deque_origin.begin(), deque_origin.end());
-    
-    std::deque<unsigned>::iterator it = deque_origin.begin();
-    for ( ; it != deque_origin.end() ; ++it)
-        std::cout << *it << " ";
-    std::cout << std::endl;
 }
 
 void create_high_element_new_pairs(std::deque<unsigned> &deque_to_be_insert, std::deque<unsigned> &deque_sorted)
@@ -96,23 +91,11 @@ void create_high_element_new_pairs(std::deque<unsigned> &deque_to_be_insert, std
 void insert(std::deque<unsigned> &deque_to_be_insert, std::deque<unsigned> &deque_sorted)
 {
     std::deque<unsigned>::iterator it_tbi = deque_to_be_insert.begin();
-    std::deque<unsigned>::iterator it_sorted;
-    int insertion_done;
     
     for (; it_tbi != deque_to_be_insert.end(); ++it_tbi)
     {
-        it_sorted = deque_sorted.begin();
-        insertion_done = 0;
-        for(; it_sorted != deque_sorted.end() ; ++it_sorted)
-        {
-            if (*it_tbi < *it_sorted)
-            {
-                deque_sorted.insert(it_sorted, *it_tbi);
-                insertion_done = 1;
-                break;
-            }
-        }
-        if (!insertion_done)
-            deque_sorted.insert(deque_sorted.end(), *it_tbi);
+        std::deque<unsigned>::iterator pos = std::lower_bound(deque_sorted.begin(), deque_sorted.end(), *it_tbi);
+        deque_sorted.insert(pos, *it_tbi);
     }
 }
+

@@ -6,7 +6,7 @@
 /*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 15:46:30 by anastruc          #+#    #+#             */
-/*   Updated: 2025/04/17 18:25:59 by anastruc         ###   ########.fr       */
+/*   Updated: 2025/04/22 17:16:16 by anastruc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ FordJ::FordJ(char **sequence)
 {
     for(int i = 1; sequence[i] ; i++)
     {
+        input.push_back(atol(sequence[i]));
         list_origin.push_back(atol(sequence[i]));
         deque_origin.push_back(atol(sequence[i]));
     }
@@ -128,14 +129,13 @@ void FordJ::print_deque(std::deque<unsigned> &deque) const
 void FordJ::print_algo_results()
 {
     std::cout << "Before: ";
-    print_list(list_origin);
+    print_list(input);
     std::cout << "After: ";
     print_list(list_sorted);
 
-    std::cout << "After: ";
-    print_deque(deque_sorted);
+    // std::cout << "After: ";
+    // print_deque(deque_sorted);
     
-    std::cout << std::endl;
     std::cout << "Time to process a range of " << sequence_size << BLUE << " elements with std::list : " << list_algo_timer << " μs"  RESET << std::endl;
     std::cout << "Time to process a range of " << sequence_size << MAGENTA << " elements with std::deque : " <<  deque_algo_timer << " μs" RESET << std::endl;
     
