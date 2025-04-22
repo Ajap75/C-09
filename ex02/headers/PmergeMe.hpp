@@ -6,7 +6,7 @@
 /*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 15:46:30 by anastruc          #+#    #+#             */
-/*   Updated: 2025/04/22 16:55:06 by anastruc         ###   ########.fr       */
+/*   Updated: 2025/04/22 17:21:57 by anastruc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 class FordJ
 {
     public :
+    
         FordJ(char **sequence);
         ~FordJ();
         FordJ(const FordJ &other);
@@ -34,6 +35,7 @@ class FordJ
         
         private :
 
+        FordJ();
         std::list<unsigned> input;
         std::size_t sequence_size;
         std::list<unsigned> list_origin;

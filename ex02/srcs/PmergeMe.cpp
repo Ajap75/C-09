@@ -6,7 +6,7 @@
 /*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 15:46:30 by anastruc          #+#    #+#             */
-/*   Updated: 2025/04/22 17:16:16 by anastruc         ###   ########.fr       */
+/*   Updated: 2025/04/22 17:26:27 by anastruc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ FordJ::FordJ(char **sequence)
 
 FordJ::~FordJ() {}
 
-FordJ::FordJ(const FordJ &other) : list_origin(other.list_origin), list_sorted(other. list_sorted), deque_origin(other.deque_origin), deque_sorted(other.deque_sorted) {}
+FordJ::FordJ(const FordJ &other) : input(other.input), sequence_size(other.sequence_size), list_origin(other.list_origin), list_sorted(other. list_sorted), deque_origin(other.deque_origin), deque_sorted(other.deque_sorted){}
 
 FordJ& FordJ::operator =(const FordJ &other)
 {
@@ -45,6 +45,8 @@ FordJ& FordJ::operator =(const FordJ &other)
         list_sorted = other. list_sorted;
         deque_origin = other.deque_origin;
         deque_sorted =other.deque_sorted;
+        input =other.input;
+        sequence_size = other.sequence_size;
     }
     return(*this);
 }
