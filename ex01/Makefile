@@ -6,13 +6,13 @@
 #    By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 12:53:29 by anastruc          #+#    #+#              #
-#    Updated: 2025/04/15 16:38:38 by anastruc         ###   ########.fr        #
+#    Updated: 2025/04/22 14:57:03 by anastruc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = RPN
 COMPIL = c++
-FLAGS =  -Wall -Werror -Wextra -std=c++98 -g3 -fPIC
+FLAGS =  -Wall -Werror -Wextra -std=c++98 -g3
 
 PINK = \033[1;35m
 BLUE = \033[1;36m

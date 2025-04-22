@@ -6,7 +6,7 @@
 /*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:29:27 by anastruc          #+#    #+#             */
-/*   Updated: 2025/04/16 14:19:59 by anastruc         ###   ########.fr       */
+/*   Updated: 2025/04/22 15:13:37 by anastruc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <cstdlib>
 #include <iostream>
 
-static void calculate_stack(char sign, std::stack<float> &stack);
+static int calculate_stack(char sign, std::stack<float> &stack);
 static float operation(char sign, float left_value, float right_value);
 
 
@@ -45,7 +45,10 @@ void rpn::run_calculation()
         if (_input.find_first_of("0123456789", i) == i)
             stack.push((_input[i]) - 48);
         else if (_input.find_first_of("*/+-", i) == i)
-            calculate_stack(_input[i], stack);
+        {
+            if (calculate_stack(_input[i], stack))
+                return ;
+        }
     }
     if (stack.size() == 1)
         std::cout << stack.top() << std::endl;
@@ -54,22 +57,28 @@ void rpn::run_calculation()
 
 }
 
-static void calculate_stack(char sign, std::stack<float> &stack)
+static int calculate_stack(char sign, std::stack<float> &stack)
 {
     float left_value;
     float right_value;
     float result;
     if (stack.size() < 2)
-        std::cerr << "Not enough elements in the stack -> at least 2 operands" << std::endl;
-
+    {
+        std::cerr << "Error :Not enough elements in the stack -> at least 2 operands" << std::endl;
+        return (1);
+    }
     right_value = stack.top();
     stack.pop();
     left_value = stack.top();
     stack.pop();
     if (sign  == '/' && right_value == 0)
-        return ;
+    {
+        std::cerr << "Error :Devide by 0" << std::endl;
+        return (1);
+    }
     result = operation(sign,(left_value), (right_value));
     stack.push(result);
+    return (0);
 }
 
 static float operation(char sign, float left_value, float right_value)

@@ -6,13 +6,13 @@
 #    By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 12:53:29 by anastruc          #+#    #+#              #
-#    Updated: 2025/04/14 20:01:57 by anastruc         ###   ########.fr        #
+#    Updated: 2025/04/22 13:34:13 by anastruc         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = btc
 COMPIL = c++
-FLAGS =  -Wall -Werror -Wextra -std=c++98 -g3 -fPIC
+FLAGS =  -Wall -Werror -Wextra -std=c++98 -g3
 
 PINK = \033[1;35m
 BLUE = \033[1;36m

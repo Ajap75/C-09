@@ -6,7 +6,7 @@
 /*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 15:29:24 by anastruc          #+#    #+#             */
-/*   Updated: 2025/04/16 12:33:33 by anastruc         ###   ########.fr       */
+/*   Updated: 2025/04/22 15:14:14 by anastruc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ class rpn
     std::string _input;
     std::stack<float> stack;
     rpn();
-    void    empty_and_print_stack();
 };
 #endif 

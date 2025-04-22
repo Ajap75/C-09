@@ -6,7 +6,7 @@
 /*   By: anastruc <anastruc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 13:57:23 by anastruc          #+#    #+#             */
-/*   Updated: 2025/04/16 12:58:19 by anastruc         ###   ########.fr       */
+/*   Updated: 2025/04/22 14:45:20 by anastruc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ BitcoinExchange::BitcoinExchange(std::string &dbFileName, std::string &inputFile
         std::cout << "Error: could not open file" << std::endl;
         throw(BitcoinExchange::ExceptionDbFileError());
     }
+
     LoadDbInMap(db_ifs);
     LoadInputInVector(input_ifs);
 }
@@ -48,7 +49,9 @@ void BitcoinExchange::LoadDbInMap(std::ifstream &db_ifs)
     {
         comma = line.find(',');
         if (comma == std::string::npos)
-        throw(BitcoinExchange::ExceptionDbFormatError());
+        {
+            throw(BitcoinExchange::ExceptionDbFormatError());
+        }
         date = line.substr(0, comma);
         btcRate = line.substr(comma + 1);
         db_map[date] = std::atof(btcRate.c_str()); 
@@ -96,7 +99,11 @@ void   BitcoinExchange::PrintPortfolioDailyValue()
     std::vector<std::string>::iterator it_input = input_vector.begin();
     std::map<std::string, float>::iterator it_db = db_map.begin();
 
-    
+    if (it_input == input_vector.end() || it_db == db_map.end())
+    {
+        std::cout << "Error: empty input or db file." << date << std::endl;
+        return ;
+    }
     it_input++; // pass the first line (title);
     for( ; it_input != input_vector.end() ; ++it_input)
     {
