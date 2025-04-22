@@ -13,6 +13,8 @@
 ./RPN "8 9 * 9 - 9 - 9 - 4 - 1 +" #42
 ./RPN "9 8 * 4 * 4 / 2 + 9 - 8 - 8 - 1 - 6 -" # should return 42
 ./RPN "1 2 * 2 / 2 + 5 * 6 - 1 3 * - 4 5 * * 8 /" #should return 15
+ ./RPN "(1 + 1)"  #ERROR
+./RPN "7 7 * 7 -" #42
 
 # Three steps to make a script : 
 # 1) create a .sh file for shell file
